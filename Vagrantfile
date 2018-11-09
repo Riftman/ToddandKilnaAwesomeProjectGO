@@ -14,6 +14,10 @@ Vagrant.configure("2") do |config|
   # boxes at https://vagrantcloud.com/search.
   config.vm.box = "generic/ubuntu1804"
 
+  #uploads and runs the docker install script.
+  config.vm.provision "shell", path: "docker-install.sh"
+  config.vm.provision "shell", inline: "sudo usermod -aG docker vagrant"
+
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
   # `vagrant box outdated`. This is not recommended.
@@ -67,7 +71,10 @@ Vagrant.configure("2") do |config|
   #   apt-get update
   #   apt-get install -y apache2
   # SHELL
-  config.vm.provision "docker" do |d|
-    d.build_image "/vagrant/app"
-  end
+
+  #docker provision commented out for manual bash
+  
+ # config.vm.provision "docker" do |d|
+  #  d.build_image "/vagrant/app"
+  #end
 end
