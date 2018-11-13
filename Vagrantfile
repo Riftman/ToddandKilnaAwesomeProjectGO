@@ -13,10 +13,12 @@ Vagrant.configure("2") do |config|
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://vagrantcloud.com/search.
   config.vm.box = "generic/ubuntu1804"
-  config.disksize.size = '10GB'
+  #config.disksize.size = '10GB'
   #uploads and runs the docker install script.
   config.vm.provision "shell", path: "docker-install.sh"
   config.vm.provision "shell", inline: "sudo usermod -aG docker vagrant"
+  config.vm.provision "shell", inline: "sudo apt-get -y install dos2unix"
+  config.vm.provision "shell", inline: "sudo apt-get -y install docker-compose"
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
